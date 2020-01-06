@@ -1,13 +1,20 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
-import {ViewProps} from '../interfaces';
+import {View, Text, StyleSheet, Button} from 'react-native';
+import {NavigationStackProp} from 'react-navigation-stack';
 
-interface Props extends ViewProps {}
+type Props = {
+  navigation: NavigationStackProp<{userId: string}>;
+};
 
-export const CategoriesScreen = () => {
+export const CategoriesScreen = (props: Props) => {
+  console.log(props);
   return (
     <View style={styles.screen}>
       <Text>This is categories screen</Text>
+      <Button
+        title="Go to Meals!"
+        onPress={() => props.navigate('CategoryMeals')}
+      />
     </View>
   );
 };
