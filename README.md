@@ -11,3 +11,8 @@
 
 1. /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/bin/ruby: bad interpreter: No such file or directory:
    `sudo gem install cocoapods`
+
+In android folder replace
+testapp with mealapp
+TestApp with MealApp
+Change folder name android/app/src/main/java/com/testapp to android/app/src/main/java/com/mealapp
