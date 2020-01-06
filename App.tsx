@@ -1,20 +1,6 @@
-import React, {useState} from 'react';
-import {StyleSheet, SafeAreaView} from 'react-native';
-import Header from './components/Header';
-import {Test} from './screens';
-import {PressEvent} from './interfaces';
+import React from 'react';
+import {MealsNavigator} from './navigation';
 
 export default function App() {
-  return (
-    <SafeAreaView style={styles.screen}>
-      <Header title="Guess a number" />
-      <Test />
-    </SafeAreaView>
-  );
+  return <MealsNavigator />;
 }
-
-const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-  },
-});
