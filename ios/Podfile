@@ -1,8 +1,8 @@
 platform :ios, '9.0'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
-target 'TestApp' do
-  # Pods for TestApp
+target 'MealApp' do
+  # Pods for MealApp
   pod 'FBLazyVector', :path => "../node_modules/react-native/Libraries/FBLazyVector"
   pod 'FBReactNativeSpec', :path => "../node_modules/react-native/Libraries/FBReactNativeSpec"
   pod 'RCTRequired', :path => "../node_modules/react-native/Libraries/RCTRequired"
@@ -35,7 +35,7 @@ target 'TestApp' do
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
 
-  target 'TestAppTests' do
+  target 'MealAppTests' do
     inherit! :search_paths
     # Pods for testing
   end
@@ -43,10 +43,10 @@ target 'TestApp' do
   use_native_modules!
 end
 
-target 'TestApp-tvOS' do
-  # Pods for TestApp-tvOS
+target 'MealApp-tvOS' do
+  # Pods for MealApp-tvOS
 
-  target 'TestApp-tvOSTests' do
+  target 'MealApp-tvOSTests' do
     inherit! :search_paths
     # Pods for testing
   end
