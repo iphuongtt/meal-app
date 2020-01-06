@@ -1,4 +1,4 @@
-package com.testapp;
+package com.mealapp;
 
 import android.app.Application;
 import android.content.Context;

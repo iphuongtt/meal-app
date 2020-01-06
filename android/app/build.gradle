@@ -128,7 +128,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.testapp"
+        applicationId "com.mealapp"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
