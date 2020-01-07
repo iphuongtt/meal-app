@@ -1,7 +1,8 @@
 import React from 'react';
-import {FlatList, Text, View, StyleSheet, TouchableOpacity} from 'react-native';
+import {FlatList} from 'react-native';
 import {NavigationStackScreenComponent} from 'react-navigation-stack';
 import {CATEGORIES} from '../data/dummy-data';
+import {CategoryGridTile} from '../components';
 
 type Category = {
   id: string;
@@ -12,20 +13,18 @@ type Category = {
 export const CategoriesScreen: NavigationStackScreenComponent = props => {
   const renderGridItem = (itemData: {item: Category}) => {
     return (
-      <TouchableOpacity
-        onPress={() =>
+      <CategoryGridTile
+        title={itemData.item.title}
+        color={itemData.item.color}
+        onSelect={() => {
           props.navigation.navigate({
             routeName: 'CategoryMeals',
             params: {
               categoryId: itemData.item.id,
             },
-          })
-        }
-        style={styles.gridItem}>
-        <View>
-          <Text>{itemData.item.title}</Text>
-        </View>
-      </TouchableOpacity>
+          });
+        }}
+      />
     );
   };
 
@@ -37,13 +36,5 @@ export const CategoriesScreen: NavigationStackScreenComponent = props => {
 CategoriesScreen.navigationOptions = {
   headerTitle: 'Meal Categories',
 };
-
-const styles = StyleSheet.create({
-  gridItem: {
-    flex: 1,
-    margin: 15,
-    height: 150,
-  },
-});
 
 export default CategoriesScreen;
