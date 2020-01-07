@@ -3,12 +3,7 @@ import {FlatList} from 'react-native';
 import {NavigationStackScreenComponent} from 'react-navigation-stack';
 import {CATEGORIES} from '../data/dummy-data';
 import {CategoryGridTile} from '../components';
-
-type Category = {
-  id: string;
-  title: string;
-  color: string;
-};
+import {Category} from '../models';
 
 export const CategoriesScreen: NavigationStackScreenComponent = props => {
   const renderGridItem = (itemData: {item: Category}) => {
