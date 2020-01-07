@@ -1,6 +1,8 @@
 import React from 'react';
 import {View, Text, StyleSheet, Button} from 'react-native';
 import {NavigationStackScreenComponent} from 'react-navigation-stack';
+import {CustomHeaderButton} from '../components';
+import {HeaderButtons, Item} from 'react-navigation-header-buttons';
 import {MEALS} from '../data/dummy-data';
 
 export const MealDetailScreen: NavigationStackScreenComponent = props => {
@@ -19,6 +21,11 @@ MealDetailScreen.navigationOptions = ({navigation}) => {
   const selectedMeal = MEALS.find(meal => meal.id === mealId);
   return {
     headerTitle: selectedMeal.title,
+    headerRight: () => (
+      <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+        <Item title="Favorite" iconName="md-star" onPress={() => {}} />
+      </HeaderButtons>
+    ),
   };
 };
 

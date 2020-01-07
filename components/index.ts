@@ -6,3 +6,4 @@ export * from './BodyText';
 export * from './MainButton';
 export * from './CategoryGridTile';
 export * from './MealItem';
+export * from './HeaderButton';
