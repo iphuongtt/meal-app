@@ -3,7 +3,7 @@ import {View, Text, StyleSheet, Button} from 'react-native';
 import {NavigationStackProp} from 'react-navigation-stack';
 
 type Props = {
-  navigation: NavigationStackProp<{userId: string}>;
+  navigation: NavigationStackProp;
 };
 
 export const CategoriesScreen = (props: Props) => {
@@ -13,7 +13,8 @@ export const CategoriesScreen = (props: Props) => {
       <Text>This is categories screen</Text>
       <Button
         title="Go to Meals!"
-        onPress={() => props.navigate('CategoryMeals')}
+        onPress={() => props.navigation.navigate('CategoryMeals')}
+        //onPress={() => props.navigation.replace('CategoryMeals')} //Replace this screen with CategoryMeal and cannot go back useful for login screen
       />
     </View>
   );
