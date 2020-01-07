@@ -1,15 +1,21 @@
 import React from 'react';
-import {View, StyleSheet, FlatList, Text} from 'react-native';
+import {View, StyleSheet, FlatList} from 'react-native';
 import {NavigationStackScreenComponent} from 'react-navigation-stack';
 import {CATEGORIES, MEALS} from '../data/dummy-data';
 import {Meal} from '../models';
+import {MealItem} from '../components';
 
 export const CategoryMealsScreen: NavigationStackScreenComponent = props => {
   const renderMealItem = (itemData: {item: Meal}) => {
     return (
-      <View>
-        <Text>{itemData.item.title}</Text>
-      </View>
+      <MealItem
+        title={itemData.item.title}
+        onSelectMeal={() => {}}
+        duration={itemData.item.duration}
+        complexity={itemData.item.complexity.toUpperCase()}
+        affordability={itemData.item.affordability.toUpperCase()}
+        image={itemData.item.imageUrl}
+      />
     );
   };
   const catId = props.navigation.getParam('categoryId');
