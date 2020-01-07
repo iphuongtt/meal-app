@@ -1,15 +1,15 @@
 import React from 'react';
 import {View, Text, StyleSheet, Button} from 'react-native';
-import {NavigationStackProp} from 'react-navigation-stack';
+import {NavigationStackScreenComponent} from 'react-navigation-stack';
+import {CATEGORIES} from '../data/dummy-data';
 
-type Props = {
-  navigation: NavigationStackProp<{userId: string}>;
-};
-
-export const CategoryMealsScreen = (props: Props) => {
+export const CategoryMealsScreen: NavigationStackScreenComponent = props => {
+  const catId = props.navigation.getParam('categoryId');
+  const selectedCategory = CATEGORIES.find(cat => cat.id === catId);
   return (
     <View style={styles.screen}>
       <Text>This is category meals screen</Text>
+      <Text>{selectedCategory.title}</Text>
       <Button
         title="Go To Meal Detail"
         onPress={() => props.navigation.navigate('MealDetail')}
@@ -18,7 +18,6 @@ export const CategoryMealsScreen = (props: Props) => {
         title="Go Back"
         onPress={() => {
           props.navigation.goBack();
-          //props.navigation.pop(); // Pops off the current screen on the stack
         }}
       />
     </View>

@@ -21,7 +21,14 @@ export const CategoriesScreen: NavigationStackScreenComponent = props => {
   const renderGridItem = (itemData: {item: Category}) => {
     return (
       <TouchableOpacity
-        onPress={() => props.navigation.navigate({routeName: 'CategoryMeals'})}
+        onPress={() =>
+          props.navigation.navigate({
+            routeName: 'CategoryMeals',
+            params: {
+              categoryId: itemData.item.id,
+            },
+          })
+        }
         style={styles.gridItem}>
         <View>
           <Text>{itemData.item.title}</Text>
