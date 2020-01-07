@@ -1,30 +1,36 @@
 import React from 'react';
-import {View, Text, StyleSheet, Button} from 'react-native';
+import {FlatList, Text, View, StyleSheet} from 'react-native';
 import {NavigationStackProp} from 'react-navigation-stack';
+import {CATEGORIES} from '../data/dummy-data';
 
 type Props = {
   navigation: NavigationStackProp;
 };
+type Category = {
+  id: string;
+  title: string;
+  color: string;
+};
 
-export const CategoriesScreen = (props: Props) => {
-  console.log(props);
+const renderGridItem = (itemData: {item: Category}) => {
   return (
-    <View style={styles.screen}>
-      <Text>This is categories screen</Text>
-      <Button
-        title="Go to Meals!"
-        onPress={() => props.navigation.navigate('CategoryMeals')}
-        //onPress={() => props.navigation.replace('CategoryMeals')} //Replace this screen with CategoryMeal and cannot go back useful for login screen
-      />
+    <View style={styles.gridItem}>
+      <Text>{itemData.item.title}</Text>
     </View>
   );
 };
 
+export const CategoriesScreen = () => {
+  return (
+    <FlatList data={CATEGORIES} numColumns={2} renderItem={renderGridItem} />
+  );
+};
+
 const styles = StyleSheet.create({
-  screen: {
+  gridItem: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    margin: 15,
+    height: 150,
   },
 });
 
