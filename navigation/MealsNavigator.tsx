@@ -4,6 +4,7 @@ import {createBottomTabNavigator} from 'react-navigation-tabs';
 import {createAppContainer} from 'react-navigation';
 import {Platform} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {createMaterialBottomTabNavigator} from 'react-navigation-material-bottom-tabs';
 import {colors} from '../constants';
 import {
   CategoriesScreen,
@@ -29,32 +30,42 @@ const MealsStackNavigator = createStackNavigator(
   },
 );
 
-const MealsFavTabNavigator = createBottomTabNavigator(
-  {
-    Meals: {
-      screen: MealsStackNavigator,
-      navigationOptions: {
-        tabBarIcon: tabInfo => {
-          return (
-            <Icon name="ios-restaurant" size={25} color={tabInfo.tintColor} />
-          );
+const tabScreenConfig = {
+  Meals: {
+    screen: MealsStackNavigator,
+    navigationOptions: {
+      tabBarIcon: tabInfo => {
+        return (
+          <Icon name="ios-restaurant" size={25} color={tabInfo.tintColor} />
+        );
+      },
+      tabBarColor: colors.primary,
+    },
+  },
+  Favorites: {
+    screen: FavoritesScreen,
+    navigationOptions: {
+      tabBarIcon: tabInfo => (
+        <Icon name="ios-star" size={25} color={tabInfo.tintColor} />
+      ),
+      tabBarColor: colors.accent,
+    },
+  },
+};
+const MealsFavTabNavigator =
+  Platform.OS === 'android'
+    ? createMaterialBottomTabNavigator(tabScreenConfig, {
+        activeColor: 'white',
+        shifting: true,
+        // shifting: false,
+        // barStyle: {
+        //   backgroundColor: colors.primary,
+        // },
+      })
+    : createBottomTabNavigator(tabScreenConfig, {
+        tabBarOptions: {
+          activeTintColor: colors.accent,
         },
-      },
-    },
-    Favorites: {
-      screen: FavoritesScreen,
-      navigationOptions: {
-        tabBarIcon: tabInfo => (
-          <Icon name="ios-star" size={25} color={tabInfo.tintColor} />
-        ),
-      },
-    },
-  },
-  {
-    tabBarOptions: {
-      activeTintColor: colors.accent,
-    },
-  },
-);
+      });
 
 export const MealsNavigator = createAppContainer(MealsFavTabNavigator);
