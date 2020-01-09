@@ -6,8 +6,7 @@ import {Meal} from '../models';
 import {MealItem} from '../components';
 
 interface Props extends ViewProps {
-  data: Meal[];
-  onSelectMeal: Function;
+  listData: Meal[];
   navigation: NavigationStackProp;
 }
 
@@ -33,7 +32,7 @@ export const MealList = (props: Props) => {
   };
   return (
     <View style={styles.list}>
-      <FlatList data={} renderItem={renderMealItem} />
+      <FlatList data={props.listData} renderItem={renderMealItem} />
     </View>
   );
 };
