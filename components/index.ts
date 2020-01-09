@@ -8,3 +8,4 @@ export * from './CategoryGridTile';
 export * from './MealItem';
 export * from './HeaderButton';
 export * from './MealList';
+export * from './DefaultText';
