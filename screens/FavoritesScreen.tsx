@@ -1,15 +1,17 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import {ViewProps} from '../interfaces';
+import {NavigationStackScreenComponent} from 'react-navigation-stack';
 
-interface Props extends ViewProps {}
-
-export const FavoritesScreen = () => {
+export const FavoritesScreen: NavigationStackScreenComponent = () => {
   return (
     <View style={styles.screen}>
       <Text>This is favorites screen</Text>
     </View>
   );
+};
+
+FavoritesScreen.navigationOptions = {
+  headerTitle: 'Your Favorites',
 };
 
 const styles = StyleSheet.create({
