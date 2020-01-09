@@ -1,10 +1,10 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import {ViewProps} from '../interfaces';
+import {NavigationStackScreenComponent} from 'react-navigation-stack';
+import {HeaderButtons, Item} from 'react-navigation-header-buttons';
+import {CustomHeaderButton} from '../components';
 
-interface Props extends ViewProps {}
-
-export const FiltersScreen = () => {
+export const FiltersScreen: NavigationStackScreenComponent = () => {
   return (
     <View style={styles.screen}>
       <Text>This is filters screen</Text>
@@ -17,5 +17,20 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
+
+FiltersScreen.navigationOptions = ({navigation}) => {
+  return {
+    headerTitle: 'Flter Meals',
+    headerLeft: () => (
+      <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+        <Item
+          title="Menu"
+          iconName="ios-menu"
+          onPress={() => navigation.toggleDrawer()}
+        />
+      </HeaderButtons>
+    ),
+  };
+};
 
 export default FiltersScreen;

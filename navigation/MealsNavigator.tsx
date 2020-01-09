@@ -1,6 +1,7 @@
 import React from 'react';
 import {createStackNavigator} from 'react-navigation-stack';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
+import {createDrawerNavigator} from 'react-navigation-drawer';
 import {createAppContainer} from 'react-navigation';
 import {Platform} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -11,6 +12,7 @@ import {
   CategoryMealsScreen,
   MealDetailScreen,
   FavoritesScreen,
+  FiltersScreen,
 } from '../screens';
 
 const defaultStackNavOptions = {
@@ -80,4 +82,13 @@ const MealsFavTabNavigator =
         },
       });
 
-export const MealsNavigator = createAppContainer(MealsFavTabNavigator);
+const FiltersNavigator = createStackNavigator({
+  Filters: FiltersScreen,
+});
+
+const MainNavigator = createDrawerNavigator({
+  MealsFavs: MealsFavTabNavigator,
+  Filters: FiltersNavigator,
+});
+
+export const MealsNavigator = createAppContainer(MainNavigator);

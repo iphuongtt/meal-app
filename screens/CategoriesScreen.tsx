@@ -2,8 +2,9 @@ import React from 'react';
 import {FlatList} from 'react-native';
 import {NavigationStackScreenComponent} from 'react-navigation-stack';
 import {CATEGORIES} from '../data/dummy-data';
-import {CategoryGridTile} from '../components';
+import {CategoryGridTile, CustomHeaderButton} from '../components';
 import {Category} from '../models';
+import {HeaderButtons, Item} from 'react-navigation-header-buttons';
 
 export const CategoriesScreen: NavigationStackScreenComponent = props => {
   const renderGridItem = (itemData: {item: Category}) => {
@@ -28,8 +29,21 @@ export const CategoriesScreen: NavigationStackScreenComponent = props => {
   );
 };
 
-CategoriesScreen.navigationOptions = {
-  headerTitle: 'Meal Categories',
+CategoriesScreen.navigationOptions = ({navigation}) => {
+  return {
+    headerTitle: 'Meal Categories',
+    headerLeft: () => (
+      <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+        <Item
+          title="Menu"
+          iconName="ios-menu"
+          onPress={() => {
+            navigation.toggleDrawer();
+          }}
+        />
+      </HeaderButtons>
+    ),
+  };
 };
 
 export default CategoriesScreen;
