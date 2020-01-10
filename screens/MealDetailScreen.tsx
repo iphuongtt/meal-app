@@ -5,7 +5,6 @@ import {HeaderButtons, Item} from 'react-navigation-header-buttons';
 
 import {CustomHeaderButton, DefaultText} from '../components';
 import {useTypedSelector} from '../store/reducers';
-import {MEALS} from '../data/dummy-data';
 
 export const MealDetailScreen: NavigationStackScreenComponent = props => {
   const avaiableMeals = useTypedSelector(state => state.meals.meals);
@@ -38,10 +37,9 @@ export const MealDetailScreen: NavigationStackScreenComponent = props => {
 };
 
 MealDetailScreen.navigationOptions = ({navigation}) => {
-  const mealId = navigation.getParam('mealId');
-  const selectedMeal = MEALS.find(meal => meal.id === mealId);
+  const mealTitle = navigation.getParam('mealTitle');
   return {
-    headerTitle: selectedMeal.title,
+    headerTitle: mealTitle,
     headerRight: () => (
       <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
         <Item title="Favorite" iconName="md-star" onPress={() => {}} />
