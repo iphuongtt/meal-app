@@ -1,15 +1,28 @@
-import React from 'react';
+import React, {useEffect, useCallback} from 'react';
 import {View, Text, StyleSheet, Button, ScrollView, Image} from 'react-native';
 import {NavigationStackScreenComponent} from 'react-navigation-stack';
 import {HeaderButtons, Item} from 'react-navigation-header-buttons';
+import {useDispatch} from 'react-redux';
 
 import {CustomHeaderButton, DefaultText} from '../components';
 import {useTypedSelector} from '../store/reducers';
+import {toggleFavorite} from '../store/actions';
 
 export const MealDetailScreen: NavigationStackScreenComponent = props => {
   const avaiableMeals = useTypedSelector(state => state.meals.meals);
   const mealId = props.navigation.getParam('mealId');
   const selectedMeal = avaiableMeals.find(meal => meal.id === mealId);
+  const dispatch = useDispatch();
+
+  const toogleFavoriteHandler = useCallback(() => {
+    dispatch(toggleFavorite(mealId));
+  }, [mealId, dispatch]);
+
+  useEffect(() => {
+    props.navigation.setParams({toggleFav: toogleFavoriteHandler});
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [toogleFavoriteHandler]);
+
   return (
     <ScrollView>
       <Image source={{uri: selectedMeal.imageUrl}} style={styles.image} />
@@ -38,11 +51,18 @@ export const MealDetailScreen: NavigationStackScreenComponent = props => {
 
 MealDetailScreen.navigationOptions = ({navigation}) => {
   const mealTitle = navigation.getParam('mealTitle');
+  const toogleFav = navigation.getParam('toggleFav');
   return {
     headerTitle: mealTitle,
     headerRight: () => (
       <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
-        <Item title="Favorite" iconName="md-star" onPress={() => {}} />
+        <Item
+          title="Favorite"
+          iconName="md-star"
+          onPress={() => {
+            toogleFav();
+          }}
+        />
       </HeaderButtons>
     ),
   };
