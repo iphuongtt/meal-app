@@ -1,13 +1,16 @@
 import React from 'react';
 import {View, Text, StyleSheet, Button, ScrollView, Image} from 'react-native';
 import {NavigationStackScreenComponent} from 'react-navigation-stack';
-import {CustomHeaderButton, DefaultText} from '../components';
 import {HeaderButtons, Item} from 'react-navigation-header-buttons';
+
+import {CustomHeaderButton, DefaultText} from '../components';
+import {useTypedSelector} from '../store/reducers';
 import {MEALS} from '../data/dummy-data';
 
 export const MealDetailScreen: NavigationStackScreenComponent = props => {
+  const avaiableMeals = useTypedSelector(state => state.meals.meals);
   const mealId = props.navigation.getParam('mealId');
-  const selectedMeal = MEALS.find(meal => meal.id === mealId);
+  const selectedMeal = avaiableMeals.find(meal => meal.id === mealId);
   return (
     <ScrollView>
       <Image source={{uri: selectedMeal.imageUrl}} style={styles.image} />

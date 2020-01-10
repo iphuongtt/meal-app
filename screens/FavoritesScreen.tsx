@@ -1,11 +1,12 @@
 import React from 'react';
 import {NavigationStackScreenComponent} from 'react-navigation-stack';
 import {Item, HeaderButtons} from 'react-navigation-header-buttons';
+
 import {MealList, CustomHeaderButton} from '../components';
-import {MEALS} from '../data/dummy-data';
+import {useTypedSelector} from '../store/reducers';
 
 export const FavoritesScreen: NavigationStackScreenComponent = props => {
-  const favMeals = MEALS.filter(meal => meal.id === 'm1' || meal.id === 'm2');
+  const favMeals = useTypedSelector(state => state.meals.favoriteMeals);
   return <MealList listData={favMeals} navigation={props.navigation} />;
 };
 

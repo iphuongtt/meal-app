@@ -1,6 +1,13 @@
 import {MEALS} from '../../data/dummy-data';
+import {Meal} from '../../models';
 
-const initialState = {
+export interface MealState {
+  meals: Meal[];
+  filteredMeals: Meal[];
+  favoriteMeals: Meal[];
+}
+
+const initialState: MealState = {
   meals: MEALS,
   filteredMeals: MEALS,
   favoriteMeals: [],

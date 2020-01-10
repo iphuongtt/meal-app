@@ -1,15 +1,12 @@
 import React from 'react';
 import {MealsNavigator} from './navigation';
 import {enableScreens} from 'react-native-screens';
-import {createStore, combineReducers} from 'redux';
+import {createStore} from 'redux';
 import {Provider} from 'react-redux';
-import {mealsReducer} from './store/reducers';
+
+import {rootReducer} from './store/reducers';
 
 enableScreens();
-
-const rootReducer = combineReducers({
-  meals: mealsReducer,
-});
 
 const store = createStore(rootReducer);
 
