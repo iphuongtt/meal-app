@@ -1,9 +1,11 @@
 import React from 'react';
 import {View, StyleSheet, FlatList} from 'react-native';
 import {NavigationStackProp} from 'react-navigation-stack';
+
 import {ViewProps} from '../interfaces';
 import {Meal} from '../models';
 import {MealItem} from '../components';
+import {useTypedSelector} from '../store/reducers';
 
 interface Props extends ViewProps {
   listData: Meal[];
@@ -11,6 +13,7 @@ interface Props extends ViewProps {
 }
 
 export const MealList = (props: Props) => {
+  const favoriteMeals = useTypedSelector(state => state.meals.favoriteMeals);
   const renderMealItem = (itemData: {item: Meal}) => {
     return (
       <MealItem
@@ -21,6 +24,9 @@ export const MealList = (props: Props) => {
             params: {
               mealId: itemData.item.id,
               mealTitle: itemData.item.title,
+              isFavorite: favoriteMeals.some(
+                meal => meal.id === itemData.item.id,
+              ),
             },
           });
         }}

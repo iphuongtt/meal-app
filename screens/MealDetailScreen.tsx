@@ -14,14 +14,27 @@ export const MealDetailScreen: NavigationStackScreenComponent = props => {
   const selectedMeal = avaiableMeals.find(meal => meal.id === mealId);
   const dispatch = useDispatch();
 
+  const currentMealIsFavorite = useTypedSelector(state =>
+    state.meals.favoriteMeals.some(meal => meal.id === mealId),
+  );
+
   const toogleFavoriteHandler = useCallback(() => {
     dispatch(toggleFavorite(mealId));
   }, [mealId, dispatch]);
 
   useEffect(() => {
-    props.navigation.setParams({toggleFav: toogleFavoriteHandler});
+    props.navigation.setParams({
+      toggleFav: toogleFavoriteHandler,
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [toogleFavoriteHandler]);
+
+  useEffect(() => {
+    props.navigation.setParams({
+      isFavorite: currentMealIsFavorite,
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentMealIsFavorite]);
 
   return (
     <ScrollView>
@@ -52,13 +65,14 @@ export const MealDetailScreen: NavigationStackScreenComponent = props => {
 MealDetailScreen.navigationOptions = ({navigation}) => {
   const mealTitle = navigation.getParam('mealTitle');
   const toogleFav = navigation.getParam('toggleFav');
+  const isFavorite = navigation.getParam('isFavorite');
   return {
     headerTitle: mealTitle,
     headerRight: () => (
       <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
         <Item
           title="Favorite"
-          iconName="md-star"
+          iconName={isFavorite ? 'ios-star' : 'ios-star-outline'}
           onPress={() => {
             toogleFav();
           }}
