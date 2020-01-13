@@ -1,5 +1,6 @@
 export const TOGGLE_FAVORITE = 'TOGGLE_FAVORITE';
-import {Meal} from '../../models';
+export const SET_FILTERS = 'SET_FILTERS';
+import {Meal, MealFilter} from '../../models';
 import {PropType} from '../../types';
 
 export interface MealState {
@@ -13,4 +14,9 @@ interface ToggleFavoriteAction {
   mealId: PropType<Meal, 'id'>;
 }
 
-export type MealActionTypes = ToggleFavoriteAction;
+interface SetFiltersAction {
+  type: typeof SET_FILTERS;
+  filters: MealFilter;
+}
+
+export type MealActionTypes = ToggleFavoriteAction | SetFiltersAction;

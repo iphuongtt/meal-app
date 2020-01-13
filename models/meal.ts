@@ -1,3 +1,4 @@
+import {PropType} from '../types';
 export class Meal {
   constructor(
     public id: string,
@@ -30,4 +31,8 @@ export class Meal {
   }
 }
 
+export interface MealFilter {
+  glutenFree?: PropType<Meal, 'isGlutenFree'>;
+  vegan?: PropType<Meal, 'isVegan'>;
+}
 export default Meal;
